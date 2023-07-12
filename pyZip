@@ -1,0 +1,12 @@
+import subprocess
+
+def unzip_file(file_path, password, output_path):
+    command = ['C:\\Program Files\\7-Zip\\7z.exe', 'x', '-p{}'.format(password), '-y', '-o{}'.format(output_path), file_path]
+    subprocess.run(command, capture_output=True, text=True)
+
+with open('C:/Restore/VMs/longlist', 'r') as f:
+    passwords = f.read().splitlines()
+
+for password in passwords:
+    unzip_file('C:/Restore/VMs/zip.7z', password, 'C:/Restore/VMs/unzip/')
+    print (password)
